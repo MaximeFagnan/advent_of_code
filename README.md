@@ -1,2 +1,4 @@
-# advent_of_code
-Advent of code
+# Advent of Code
+A personal repository for my solutions for the advent of code problems throughout the years
+
+*Maxime Fagnan*
