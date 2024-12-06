@@ -1,5 +1,5 @@
 # This code ran in a couple of seconds, probably like 30s. There were a bunch of repeated cases...
-# To upgrade this code I should only consider obstacles placed in the guards path, considering he only visits about one quarter of the grid
+# To upgrade this code I should only consider obstacles placed in the guard's path, considering he only visits about one quarter of the grid
 
 import itertools
 obstacles = set() # coords of obstacles
@@ -91,7 +91,8 @@ def can_guard_get_out():
 cyclic_obstacle_placements = 0
 
 for obstacle_verif_count, possible_obstacle in enumerate(itertools.product(range(height),range(width))):
-    print(obstacle_verif_count)
+    if obstacle_verif_count%100 == 0:
+        print(obstacle_verif_count) # is the program bugged or just calculating
     if possible_obstacle in obstacles or possible_obstacle==starting_location:
         pass #invalid obstacle placement
     else:
