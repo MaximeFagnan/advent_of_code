@@ -172,9 +172,9 @@ def can_guard_get_out():
 
 cyclic_obstacle_placements = 0
 
-for obstacle_verif_count, possible_obstacle in enumerate(itertools.product(range(height),range(width))):
-    if obstacle_verif_count%100 == 0:
-        print(obstacle_verif_count) # is the program bugged or just calculating
+for obstacle_verif_counter, possible_obstacle in enumerate(itertools.product(range(height),range(width))):
+    if obstacle_verif_counter%100 == 0:
+        print(obstacle_verif_counter) # is the program bugged or just calculating
     if possible_obstacle in obstacles or possible_obstacle==starting_location:
         pass # invalid obstacle placement
     # check only obstacles that would modify the path
