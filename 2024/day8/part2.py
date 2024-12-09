@@ -1,8 +1,8 @@
 from itertools import combinations
 
 data = []
-towers = dict()
-antinodes_to_tower_types = dict()  # (x,y) -> [A,B,C] means (x,y) has antinode for all these frequencies
+towers = dict() # coords of the towers
+antinodes_to_tower_types = dict()  # (x,y) -> [A,B,C] means (x,y) has antinode for frequencies A, B and C
 
 filename = r"2024\day8\input.txt"
 with open(filename, "r") as file:
