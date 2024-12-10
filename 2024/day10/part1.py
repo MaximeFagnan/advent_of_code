@@ -58,7 +58,7 @@ for n in range(8,-1,-1):
         for neighbour in neighbours(location):
             line_no, col_no = neighbour
             if data[line_no][col_no] == n+1:
-                can_go_to[location] = can_go_to[location].union(can_go_to[neighbour])
+                can_go_to[location].update(can_go_to[neighbour])
 
 somme = 0
 
