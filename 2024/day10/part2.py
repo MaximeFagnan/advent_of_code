@@ -6,11 +6,16 @@ Pour chaque location contenant n, on veut donc remplir de façon dynamique, de m
 les coordonées des 9 où l'on peut se rendre en montant la colline de manière graduelle.
 """
 
+# Ce code n'a pas été vérifié sur le input officiel.
+# Je vérifierai lorsque mes étudiants auront eu la chance de me rattrapé
+
 data = []
 locations = dict()  # 0 <= n <= 9, {n : set of coords where n can be found}
 can_go_to = dict()  # {location: set of locations containing a 9 you can go to by even, gradual uphill slope from location}
+distinct_ways_to_get_to_a_9 = dict() # location -> i: int
 
-filename = r"2024\day10\input.txt"
+
+filename = r"2024\day10\test_input.txt"
 with open(filename, "r") as file:
     for line_no, line in enumerate(file):
         line = line.strip()
@@ -25,6 +30,7 @@ with open(filename, "r") as file:
                 locations[n] = [location]
             if n == 9:
                 can_go_to[location] = {location}
+                distinct_ways_to_get_to_a_9[location] = 1
 
 height = len(data)
 width = len(data[0])
@@ -55,14 +61,16 @@ for n in range(8,-1,-1):
     # for every location containing n, you can go to where your neighbours containing n+1 can go to.
     for location in locations[n]:
         can_go_to[location] = set()
+        distinct_ways_to_get_to_a_9[location] = 0
         for neighbour in neighbours(location):
             line_no, col_no = neighbour
             if data[line_no][col_no] == n+1:
                 can_go_to[location] = can_go_to[location].union(can_go_to[neighbour])
+                distinct_ways_to_get_to_a_9[location] += distinct_ways_to_get_to_a_9[neighbour]
 
 somme = 0
 
 for possible_trailhead in locations[0]:
-    somme += len(can_go_to[possible_trailhead])
+    somme += distinct_ways_to_get_to_a_9[possible_trailhead]
 
 print(somme)
